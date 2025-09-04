@@ -1,0 +1,256 @@
+state	year	physicians
+Alabama	1975	9.2
+Alaska	1975	8.4
+Arizona	1975	16.7
+Arkansas	1975	9.1
+California	1975	18.8
+Colorado	1975	17.3
+Connecticut	1975	19.8
+Delaware	1975	14.3
+District of Columbia	1975	39.6
+Florida	1975	15.2
+Georgia	1975	11.5
+Hawaii	1975	16.2
+Idaho	1975	9.5
+Illinois	1975	14.5
+Indiana	1975	10.6
+Iowa	1975	11.4
+Kansas	1975	12.8
+Kentucky	1975	10.9
+Louisiana	1975	11.4
+Maine	1975	12.8
+Maryland	1975	18.6
+Massachusetts	1975	20.8
+Michigan	1975	15.4
+Minnesota	1975	14.9
+Mississippi	1975	8.4
+Missouri	1975	15
+Montana	1975	10.6
+Nebraska	1975	12.1
+Nevada	1975	11.9
+New Hampshire	1975	14.3
+New Jersey	1975	16.2
+New Mexico	1975	12.2
+New York	1975	22.7
+North Carolina	1975	11.7
+North Dakota	1975	9.7
+Ohio	1975	14.1
+Oklahoma	1975	11.6
+Oregon	1975	15.6
+Pennsylvania	1975	16.6
+Rhode Island	1975	17.8
+South Carolina	1975	10
+South Dakota	1975	8.2
+Tennessee	1975	12.4
+Texas	1975	12.5
+Utah	1975	14.1
+Vermont	1975	18.2
+Virginia	1975	12.9
+Washington	1975	15.3
+West Virginia	1975	11
+Wisconsin	1975	12.5
+Wyoming	1975	9.5
+Alabama	1985	14.2
+Alaska	1985	13
+Arizona	1985	20.2
+Arkansas	1985	13.8
+California	1985	23.7
+Colorado	1985	20.7
+Connecticut	1985	27.6
+Delaware	1985	19.7
+District of Columbia	1985	55.3
+Florida	1985	20.2
+Georgia	1985	16.2
+Hawaii	1985	21.5
+Idaho	1985	12.1
+Illinois	1985	20.5
+Indiana	1985	14.7
+Iowa	1985	15.6
+Kansas	1985	17.3
+Kentucky	1985	15.1
+Louisiana	1985	17.3
+Maine	1985	18.7
+Maryland	1985	30.4
+Massachusetts	1985	30.2
+Michigan	1985	20.8
+Minnesota	1985	20.5
+Mississippi	1985	11.8
+Missouri	1985	20.5
+Montana	1985	14
+Nebraska	1985	15.7
+Nevada	1985	16
+New Hampshire	1985	18.1
+New Jersey	1985	23.4
+New Mexico	1985	17
+New York	1985	29
+North Carolina	1985	16.9
+North Dakota	1985	15.8
+Ohio	1985	19.9
+Oklahoma	1985	16.1
+Oregon	1985	19.7
+Pennsylvania	1985	23.6
+Rhode Island	1985	23.3
+South Carolina	1985	14.7
+South Dakota	1985	13.4
+Tennessee	1985	17.7
+Texas	1985	16.8
+Utah	1985	17.2
+Vermont	1985	23.8
+Virginia	1985	19.5
+Washington	1985	20.2
+West Virginia	1985	16.3
+Wisconsin	1985	17.7
+Wyoming	1985	12.9
+Alabama	2000	19.8
+Alaska	2000	18.5
+Arizona	2000	20.9
+Arkansas	2000	18.8
+California	2000	23.8
+Colorado	2000	24
+Connecticut	2000	33.7
+Delaware	2000	24.7
+District of Columbia	2000	62.5
+Florida	2000	24.1
+Georgia	2000	20.4
+Hawaii	2000	26.4
+Idaho	2000	15.8
+Illinois	2000	26.1
+Indiana	2000	20
+Iowa	2000	19.8
+Kansas	2000	21.8
+Kentucky	2000	20.6
+Louisiana	2000	23.8
+Maine	2000	26.8
+Maryland	2000	35.4
+Massachusetts	2000	38.6
+Michigan	2000	26.3
+Minnesota	2000	24.9
+Mississippi	2000	16.6
+Missouri	2000	24.7
+Montana	2000	20.4
+Nebraska	2000	21.7
+Nevada	2000	18
+New Hampshire	2000	23.8
+New Jersey	2000	31.1
+New Mexico	2000	20.9
+New York	2000	36.2
+North Carolina	2000	22.3
+North Dakota	2000	19.2
+Ohio	2000	25.4
+Oklahoma	2000	19.4
+Oregon	2000	22.9
+Pennsylvania	2000	31.6
+Rhode Island	2000	32.5
+South Carolina	2000	21
+South Dakota	2000	19.2
+Tennessee	2000	23.6
+Texas	2000	20.3
+Utah	2000	19.6
+Vermont	2000	32
+Virginia	2000	23.9
+Washington	2000	23.7
+West Virginia	2000	23.5
+Wisconsin	2000	23.1
+Wyoming	2000	17.3
+Alabama	2009	21.5
+Alaska	2009	24.1
+Arizona	2009	22.6
+Arkansas	2009	20.4
+California	2009	26.2
+Colorado	2009	26.9
+Connecticut	2009	36.6
+Delaware	2009	26.3
+District of Columbia	2009	74.1
+Florida	2009	26
+Georgia	2009	21.3
+Hawaii	2009	31.7
+Idaho	2009	18.3
+Illinois	2009	27.8
+Indiana	2009	22.3
+Iowa	2009	22.8
+Kansas	2009	24
+Kentucky	2009	23.1
+Louisiana	2009	25.3
+Maine	2009	31.5
+Maryland	2009	39.9
+Massachusetts	2009	43.3
+Michigan	2009	28.8
+Minnesota	2009	28.9
+Mississippi	2009	18.2
+Missouri	2009	26.1
+Montana	2009	22.9
+Nebraska	2009	25
+Nevada	2009	19.8
+New Hampshire	2009	29.2
+New Jersey	2009	32.5
+New Mexico	2009	24.1
+New York	2009	37.3
+North Carolina	2009	25
+North Dakota	2009	25.1
+Ohio	2009	28.3
+Oklahoma	2009	21
+Oregon	2009	28
+Pennsylvania	2009	32.7
+Rhode Island	2009	37
+South Carolina	2009	22.8
+South Dakota	2009	23.4
+Tennessee	2009	26.2
+Texas	2009	21.6
+Utah	2009	21
+Vermont	2009	35.9
+Virginia	2009	27.4
+Washington	2009	27
+West Virginia	2009	25.8
+Wisconsin	2009	26.5
+Wyoming	2009	19.7
+Alabama	2019	23.7
+Alaska	2019	28.3
+Arizona	2019	26.5
+Arkansas	2019	22.6
+California	2019	29.4
+Colorado	2019	30.9
+Connecticut	2019	38.9
+Delaware	2019	27.9
+District of Columbia	2019	72.8
+Florida	2019	28.6
+Georgia	2019	24.4
+Hawaii	2019	32.6
+Idaho	2019	19.8
+Illinois	2019	30.7
+Indiana	2019	23.9
+Iowa	2019	23.6
+Kansas	2019	26.9
+Kentucky	2019	25.4
+Louisiana	2019	29.2
+Maine	2019	34.5
+Maryland	2019	41
+Massachusetts	2019	47.9
+Michigan	2019	33.3
+Minnesota	2019	32.5
+Mississippi	2019	20.6
+Missouri	2019	29.8
+Montana	2019	26.2
+Nebraska	2019	27.2
+Nevada	2019	21.8
+New Hampshire	2019	33.2
+New Jersey	2019	34.6
+New Mexico	2019	25.9
+New York	2019	39.9
+North Carolina	2019	27.5
+North Dakota	2019	25.5
+Ohio	2019	31.9
+Oklahoma	2019	22.6
+Oregon	2019	31.6
+Pennsylvania	2019	35.7
+Rhode Island	2019	42.9
+South Carolina	2019	24.7
+South Dakota	2019	25.8
+Tennessee	2019	27.7
+Texas	2019	24.3
+Utah	2019	23.9
+Vermont	2019	41.6
+Virginia	2019	29
+Washington	2019	29.1
+West Virginia	2019	28.4
+Wisconsin	2019	28.3
+Wyoming	2019	21.1

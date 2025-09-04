@@ -1,0 +1,18 @@
+model {
+  p[1] ~ dunif(0, 1)
+  logitp[1] <- log(p[1] / (1 - p[1]))
+  S[1] ~ dbin(p[1], n[1])
+  for (t in 2:(tm + 1)) {
+    epsilon[t - 1] ~ dnorm(0, 1 / (se ** 2))
+    deltalogitp[t] <- a[1] + sum(c(0, a[(1:nv) + 1]) * X[t, ]) + epsilon[t - 1]
+    logitp[t] <- logitp[t - 1] + deltalogitp[t]
+    p[t] <- exp(logitp[t]) / (1 + exp(logitp[t]))
+    S[t] ~ dbin(p[t], n[t])
+  }
+  for (v in 1:(nv + 1)) {
+    mu[v] ~ dunif(-100, 100)
+    sigma[v] ~ dunif(0, 50)
+    a[v] ~ dnorm(mu[v], 1 / sigma[v] ** 2)
+  }    
+  se ~ dunif(0, 50)
+}	
