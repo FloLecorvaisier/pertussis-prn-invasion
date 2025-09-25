@@ -8,7 +8,7 @@ The different scripts, stored in the `scripts/` folder, have the following roles
 
 -   `1-pertussis-editing.R`: This script filters the dataset published by [Lefrancq et al. (2022)](https://doi.org/10.1126/scitranslmed.abn3253) to only keep the strains that we used in the analyzes.
 
-### Part3: Cofactors data
+### Part 2: Cofactors data
 
 -   `2a-cofactors-gathering.R`: This script gives the raw values of the cofactors used in the analyzes. Some parts are highly time-consuming and running the script does not need to be run because the data it produces are already available in the `data/cofactors/` folder.
 
@@ -52,7 +52,7 @@ The different scripts, stored in the `scripts/` folder, have the following roles
 
     Where `a0`, `af`, `p0`, `tm`, `n`, `se`, `sr2` and `prop` are the model parameters and `nrep` is the number of simulations.
 
-    The outputs of this script can be found in the `precision-analyzes-1.zip` archive in thisXXX Zenodo record.
+    The outputs of this script can be found in the `precision-analyzes-1.zip` archive in [this](https://doi.org/10.5281/zenodo.17078285) Zenodo record.
 
 -   `6b-power-analyzes-2.R`: This script runs the simulations for the second precision analysis. It is meant to be run on a server using SLURM (see script below) but can also be run locally. It is nevertheless not advised to do so, as producing a reasonable number of simulations can take days. To run the script locally, you should open a terminal and run the following command:
 
@@ -62,7 +62,7 @@ The different scripts, stored in the `scripts/` folder, have the following roles
 
     Where `x`, `y`, `z` and `prop` are the model parameters and `nrep` is the number of simulations.
 
-    The outputs of this script can be found in the `precision-analyzes-2.zip` archive in thisXXX Zenodo record.
+    The outputs of this script can be found in the `precision-analyzes-2.zip` archive in [this](https://doi.org/10.5281/zenodo.17078285) Zenodo record.
 
 -   `6c-bash-bayesian-1.R`: This script creates and runs the SLURM jobs to run the first precision analysis. It is not recommended to run these scripts without a powerful computer cluster available.
 
