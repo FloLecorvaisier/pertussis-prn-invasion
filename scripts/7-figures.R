@@ -109,7 +109,7 @@ for (df in names(list_data_cofac)) {
   else { # Because there is no inter-annual, intra-state variation in the vaccine, it has its own plot.
     ggplot(data) +
       geom_point(aes(x = value, y = state)) +
-      labs(y = "", x = x_labels[names(list_data_cofac) == df]) +
+      labs(y = "State of collection", x = x_labels[names(list_data_cofac) == df]) +
       theme_minimal(base_family = "Ubuntu", base_size = base_size) +
       theme(axis.line = element_line(lineend = "square")) -> list_plots_range_cofac[[df]]
   }
