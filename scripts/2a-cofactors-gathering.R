@@ -193,7 +193,7 @@ data_coverage <- data.frame(state = rep(sort(unique(data_prn$state)),
                                        each = length(unique(data_prn$state))),
                             coverage = rep(coverage, times = length(unique(data_prn$year))))
 
-## The data frame that will be used in the analyzes is now ready.
+## The data frame that will be used in the analyses is now ready.
 write.table(data_coverage, file = "data/cofactors/data-coverage", quote = F, row.names = F, sep = "\t")
 
 #### Hospitals density ####
@@ -217,7 +217,7 @@ data_hospitals <- data.frame(state = rep(data_hospitals$state,
                                                each = length(unique(data_prn$year))))
 data_hospitals <- data_hospitals[order(data_hospitals$year, data_hospitals$state), ]
 
-## What we use in our analyzes is not the raw number of hospitals but the
+## What we use in our analyses is not the raw number of hospitals but the
 ## density of them, i.e., the number of hospitals per 100,000 inhabitants in
 ## each state. 
 state <- rep(sort(unique(data_prn$state)), each = length(unique(data_prn$year)))
@@ -282,7 +282,7 @@ year <- rep(min(data_physicians$year):max(data_physicians$year), times = length(
 year <- year[year != min(year)]
 phy <- phy[year %in% data_prn$year]
 
-## We can build the data set that will be used in the analyzes.
+## We can build the data set that will be used in the analyses.
 data_physicians <- data.frame(state = state[year %in% data_prn$year],
                               year = year[year %in% data_prn$year],
                               physicians = phy)

@@ -13,7 +13,7 @@ for (cofac in list.files("data/cofactors")) {
 ## data by transforming the values of the cofactors.
 table_prn <- with(data_prn, as.data.frame(table(state, year, prn_def)))
 table_prn$year <- as.numeric(as.character(table_prn$year))
-data_analyzes <- data.frame(year = unique(data_prn$year),
+data_analyses <- data.frame(year = unique(data_prn$year),
                             PRNm = tapply(table_prn$Freq[table_prn$prn_def == "-"], table_prn$year[table_prn$prn_def == "-"], sum),
                             PRNp = tapply(table_prn$Freq[table_prn$prn_def == "+"], table_prn$year[table_prn$prn_def == "+"], sum))
 for (df in names(list_data_cofac)) {
@@ -28,10 +28,10 @@ for (df in names(list_data_cofac)) {
   }
   Delta = x1 - x2 
   mu = (x1 + x2) / 2
-  data_analyzes[paste0("Delta_", df)] <- Delta[-length(Delta)]
-  data_analyzes[paste0("mu_", df)] <- mu[-length(mu)]
+  data_analyses[paste0("Delta_", df)] <- Delta[-length(Delta)]
+  data_analyses[paste0("mu_", df)] <- mu[-length(mu)]
 }
 
 ## We now have the final data frame that will be used in all the following
-## analyzes. We save it.
-write.table(data_analyzes, file = "data/data-analyzes2", quote = F, row.names = F, sep = "\t")
+## analyses. We save it.
+write.table(data_analyses, file = "data/data-analyses2", quote = F, row.names = F, sep = "\t")

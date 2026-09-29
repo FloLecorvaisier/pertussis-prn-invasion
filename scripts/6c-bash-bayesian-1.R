@@ -1,5 +1,5 @@
 ## This script is used to send SLURM jobs to a server/cluster for the script
-## scripts/6a-precision-analyzes-1.R
+## scripts/6a-precision-analyses-1.R
 
 ## SBATCH parameters
 nodes = 1
@@ -46,7 +46,7 @@ for (param in names(list_values)) {
                    "#SBATCH -o ", temp_out, "\n",
                    "#SBATCH -e ", temp_err, ".err", "\n",
                    "#SBATCH --job-name=\"pwr1", title, "\"", "\n\n",
-                   paste("Rscript --vanilla scripts/6a-precision-analyzes-1-data.R",
+                   paste("Rscript --vanilla scripts/6a-precision-analyses-1-data.R",
                          paste(values, collapse = " "))),
             file = temp_batch)
         system(paste("sbatch", temp_batch))
@@ -65,7 +65,7 @@ for (param in names(list_values)) {
                    "#SBATCH -o ", temp_out, "\n",
                    "#SBATCH -e ", temp_err, ".err", "\n",
                    "#SBATCH --job-name=\"pwr1", title, "\"", "\n\n",
-                   paste("Rscript --vanilla scripts/6a-precision-analyzes-1-data.R",
+                   paste("Rscript --vanilla scripts/6a-precision-analyses-1-data.R",
                          paste(values, collapse = " "))),
             file = temp_batch)
         system(paste("sbatch", temp_batch))

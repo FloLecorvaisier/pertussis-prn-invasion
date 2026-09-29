@@ -2,10 +2,10 @@ library(doParallel)
 library(data.table)
 library(pbapply)
 
-lf <- list.files("data/analyzes-outputs/precision-analyzes-2/", pattern = "-a-")
+lf <- list.files("data/analyses-outputs/precision-analyses-2/", pattern = "-a-")
 
 read_and_sum <- function(file, colnum) {
-  df_out <- read.table(paste0("data/analyzes-outputs/precision-analyzes-2/", file))
+  df_out <- read.table(paste0("data/analyses-outputs/precision-analyses-2/", file))
   df = data.frame(IC2.5 = quantile(df_out[, colnum], probs = c(.025, .975))[1],
                   IC97.5 = quantile(df_out[, colnum], probs = c(.025, .975))[2],
                   med = median(df_out[, colnum]),
@@ -24,4 +24,4 @@ read_and_sum <- function(file, colnum) {
 
 summ_af_data = rbindlist(pblapply(lf, read_and_sum, colnum = 2, cl = makeCluster(detectCores() - 1)))
 
-write.table(summ_af_data, file = "data/analyzes-summaries/summary-precision-2", quote = F, sep = "\t", row.names = F)
+write.table(summ_af_data, file = "data/analyses-summaries/summary-precision-2", quote = F, sep = "\t", row.names = F)

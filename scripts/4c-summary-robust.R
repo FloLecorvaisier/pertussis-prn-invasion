@@ -1,4 +1,4 @@
-## This script converts the hundreds of files of the robustness analyzes into
+## This script converts the hundreds of files of the robustness analyses into
 ## one compact file summarizing the information.
 
 library(doParallel)
@@ -21,7 +21,7 @@ read_and_sum <- function(file, colnum) {
 
 #### GLMM ####
 
-lf_glmm <- list.files("data/analyzes-outputs/robustness-glmm/")
-summar_glmm <- rbindlist(pblapply(paste0("data/analyzes-outputs/robustness-glmm/", lf_glmm), 
+lf_glmm <- list.files("data/analyses-outputs/robustness-glmm/")
+summar_glmm <- rbindlist(pblapply(paste0("data/analyses-outputs/robustness-glmm/", lf_glmm), 
                                   read_and_sum, cl = makeCluster(4)))
-write.table(summar_glmm, file = "data/analyzes-summaries/summary-robust-glmm", quote = F, sep = "\t", row.names = F)
+write.table(summar_glmm, file = "data/analyses-summaries/summary-robust-glmm", quote = F, sep = "\t", row.names = F)

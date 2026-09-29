@@ -28,7 +28,7 @@ data_count = data.frame(year = as.numeric(rownames(count_strains)),
                         lower = binom.confint(x = count_strains[, 1], n = count_strains[, 1] + count_strains[, 2], methods = "wilson")$lower,
                         upper = binom.confint(x = count_strains[, 1], n = count_strains[, 1] + count_strains[, 2], methods = "wilson")$upper)
 
-ggplot(data_count) +
+fig_prop = ggplot(data_count) +
   geom_point(aes(x = year, y = prop), 
              color = ifelse(data_count$year %in% 2007:2017, "black", "grey")) +
   geom_errorbar(aes(x = year, ymin = lower, ymax = upper), width = 0, 
@@ -39,9 +39,7 @@ ggplot(data_count) +
   theme_minimal(base_family = "Ubuntu", base_size = base_size) +
   theme(axis.line = element_line(lineend = "square"))
 
-png("figures/fig-prop.png", width = 9, height = 6, units = "cm", res = res, bg = "transparent")
-last_plot()
-dev.off()
+png("figures/fig-prop.png", width = 9, height = 6, units = "cm", res = res, bg = "transparent"); print(fig_prop); dev.off()
 
 #### Diversity isolates ####
 
@@ -56,7 +54,7 @@ table_prn2 <- data.frame(state = as.character(table_prn$state[table_prn$prn_def 
                            table_prn$Freq[table_prn$prn_def == "+"])
 table_prn2$freq[table_prn2$freq > 75] <- 75 # To remove excessive values
 
-ggplot(table_prn2) +
+fig_isolates = ggplot(na.omit(table_prn2)) +
   geom_point(aes(x     = year, 
                  y     = state,
                  size  = ifelse(freq == 0, NA, freq),
@@ -66,13 +64,11 @@ ggplot(table_prn2) +
                         labels = c("100%\nPRN+",  "100%\nPRN-")) +
   scale_x_continuous(breaks = seq(2007, 2019, 2)) +
   guides(color = guide_colorbar(ticks = FALSE)) +
-  labs(size = "Number\nof isolates", x = "Year of collection", y = "State of collection", color = element_blank()) +
+  labs(size = "Number\nof isolates", x = "Year of collection", y = "State of collection", color = NULL) +
   theme_minimal(base_family = "Ubuntu", base_size = base_size) +
   theme(panel.grid = element_blank(), axis.line = element_line(lineend = "square"), legend.ticks = element_blank())
 
-png("figures/fig-isolates.png", width = 9, height = 10, units = "cm", res = res, bg = "transparent")
-last_plot()
-dev.off()
+png("figures/fig-isolates.png", width = 9, height = 10, units = "cm", res = res, bg = "transparent"); print(fig_isolates); dev.off()
 
 #### Diversity cofactors ####
 
@@ -115,51 +111,41 @@ for (df in names(list_data_cofac)) {
   }
 }
 
-ggarrange(plotlist = list_plots_range_cofac, ncol = 4, nrow = 2, labels = LETTERS[1:8], 
-          font.label = list(family = "Ubuntu",  size = size_label_multiplot), hjust = 0)
+fig_cofac = ggarrange(plotlist = list_plots_range_cofac, ncol = 4, nrow = 2, labels = LETTERS[1:8], 
+                      font.label = list(family = "Ubuntu",  size = size_label_multiplot), hjust = 0)
 
-png("figures/fig-cofactors.png", width = 19, height = 18, units = "cm", res = res, bg = "transparent")
-last_plot()
-dev.off()
+png("figures/fig-cofactors.png", width = 19, height = 18, units = "cm", res = res); print(fig_cofac); dev.off()
 
-#### Robustness analysis GLM(M) ####
+#### Robustness analysis GLMM ####
 
 x_labels <- c("a[0]", "a[f]", "n", "p[1](0)", "sigma[e]", "t[m]+1")
-data_robust_glmm <- read.table("data/analyzes-summaries/summary-robust-glmm", header = T, sep = "\t")
+data_robust_glmm <- read.table("data/analyses-summaries/summary-robust-glmm", header = T, sep = "\t")
 
 data_robust <- data_robust_glmm
 data_robust$tm[data_robust$param == "tm"] <- data_robust$tm[data_robust$param == "tm"] + 1
 
-list_plot_robust_glm <- list()
-for (param in unique(data_robust_glmm$param)) {
-  data <- data_robust[data_robust$param == param, c(param, "alpha")]
-  colnames(data)[1] <- "value"
-  ggplot(data) +
-    geom_hline(yintercept = .05, linetype = "dashed") +
-    geom_line(aes(x = value, y = alpha)) +
-    scale_color_manual(values = c("darkorchid", "darkolivegreen")) +
-    labs(x = parse(text = "sigma[e]"), 
-         y = parse(text = "alpha"),
-         color = element_blank()) +
-    coord_cartesian(ylim = c(0, .45)) +
-    theme_minimal(base_family = "Ubuntu", base_size = base_size) +
-    theme(legend.position = c(2/3, 2/3),
-          legend.background = element_rect(fill = "white"),
-          axis.line = element_line(lineend = "square")) -> list_plot_robust_glm[[param]]
-}
+data <- data_robust[data_robust$param == "se", c("se", "alpha")]
+colnames(data)[1] <- "value"
 
-ggarrange(plotlist = list_plot_robust_glm, labels = LETTERS[1:6],
-          font.label = list(family = "Ubuntu", size = size_label_multiplot), hjust = 0)
+fig_robust = ggplot(data) +
+  geom_hline(yintercept = .05, linetype = "dashed") +
+  geom_line(aes(x = value, y = alpha)) +
+  scale_color_manual(values = c("darkorchid", "darkolivegreen")) +
+  labs(x = parse(text = "sigma[e]"), 
+       y = parse(text = "alpha")) +
+  coord_cartesian(ylim = c(0, .45)) +
+  theme_minimal(base_family = "Ubuntu", base_size = base_size) +
+  theme(legend.position = c(2/3, 2/3),
+        legend.background = element_rect(fill = "white"),
+        axis.line = element_line(lineend = "square"))
 
-png("figures/fig-robust.png", width = 9, height = 7, units = "cm", res = res, bg = "transparent")
-list_plot_robust_glm$se
-dev.off()
+png("figures/fig-robust.png", width = 9, height = 7, units = "cm", res = res); print(fig_robust); dev.off()
 
 
 #### Precision ####
 
 ## We load the file containing the data we want to plot.
-sum_af <- read.table("data/analyzes-summaries/summary-precision-1", header = T, sep = "\t")
+sum_af <- read.table("data/analyses-summaries/summary-precision-1", header = T, sep = "\t")
 sum_af$tm <- sum_af$tm + 1
 
 ## We mark if 0 is included in the 95% CI of af
@@ -205,12 +191,10 @@ for (i in 1:length(expr)) {
     theme(axis.line = element_line(lineend = "square"), panel.grid = element_blank()) -> list_plots_precision[[i]]
 }
 
-ggarrange(plotlist = list_plots_precision, labels = LETTERS[1:4], 
-          font.label = list(family = "Ubuntu", size = size_label_multiplot), hjust = 0)
+fig_prec_1 = ggarrange(plotlist = list_plots_precision, labels = LETTERS[1:4], 
+                       font.label = list(family = "Ubuntu", size = size_label_multiplot), hjust = 0)
 
-png("figures/fig-precision-1.png", width = 14, height = 10, units = "cm", res = res, bg = "transparent")
-last_plot()
-dev.off()
+png("figures/fig-precision-1.png", width = 14, height = 10, units = "cm", res = res); print(fig_prec_1); dev.off()
 
 ##### Standard deviation ####
 
@@ -232,16 +216,14 @@ for (i in 1:length(expr)) {
     theme(axis.line = element_line(lineend = "square"), panel.grid = element_blank()) -> list_plots_sd[[i]]
 }
 
-ggarrange(plotlist = list_plots_sd, labels = LETTERS[1:4], 
-          font.label = list(family = "Ubuntu", size = size_label_multiplot), hjust = 0)
+fig_sd_1 = ggarrange(plotlist = list_plots_sd, labels = LETTERS[1:4], 
+                     font.label = list(family = "Ubuntu", size = size_label_multiplot), hjust = 0)
 
-png("figures/fig-sd-1.png", width = 14, height = 10, units = "cm", res = res, bg = "transparent")
-last_plot()
-dev.off()
+png("figures/fig-sd-1.png", width = 14, height = 10, units = "cm", res = res); print(fig_sd_1); dev.off()
 
 #### Precision 2 ####
 
-sum_data_af <- read.table("data/analyzes-summaries/summary-precision-2", header = T, sep = "\t")
+sum_data_af <- read.table("data/analyses-summaries/summary-precision-2", header = T, sep = "\t")
 
 sum_data_af$ov0 <- ifelse(sum_data_af$IC2.5 * sum_data_af$IC97.5 < 0, T, F)
 
@@ -279,12 +261,10 @@ for (i in 1:length(expr_data)) {
     theme(axis.line = element_line(lineend = "square"), panel.grid = element_blank()) -> list_plots_precision_data[[i]]
 }
 
-ggarrange(plotlist = list_plots_precision_data, labels = LETTERS[1:3], 
-          font.label = list(family = "Ubuntu", size = 10), hjust = 0, ncol = 1)
+fig_prec_2 = ggarrange(plotlist = list_plots_precision_data, labels = LETTERS[1:3], 
+                       font.label = list(family = "Ubuntu", size = 10), hjust = 0, ncol = 1)
 
-png("figures/fig-precision-2.png", width = 9, height = 15, units = "cm", bg = "transparent", res = res)
-last_plot()
-dev.off()
+png("figures/fig-precision-2.png", width = 9, height = 15, units = "cm", res = res); print(fig_prec_2); dev.off()
 
 ##### Standard deviation ####
 
@@ -310,10 +290,8 @@ for (i in 1:length(expr_data)) {
     theme(axis.line = element_line(lineend = "square"), panel.grid = element_blank()) -> list_plots_sd_data[[i]]
 }
 
-ggarrange(plotlist = list_plots_sd_data, labels = LETTERS[1:3], 
-          font.label = list(family = "Ubuntu", size = 10), hjust = 0, ncol = 1)
+fig_sd_2 = ggarrange(plotlist = list_plots_sd_data, labels = LETTERS[1:3], 
+                     font.label = list(family = "Ubuntu", size = 10), hjust = 0, ncol = 1)
 
-png("figures/fig-sd-2.png", width = 9, height = 15, units = "cm", bg = "transparent", res = res)
-last_plot()
-dev.off()
+png("figures/fig-sd-2.png", width = 9, height = 15, units = "cm", bg = "transparent", res = res); print(fig_sd_2); dev.off()
 

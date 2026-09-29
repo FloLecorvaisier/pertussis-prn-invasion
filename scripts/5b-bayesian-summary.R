@@ -1,17 +1,17 @@
-## This script converts the hundreds of files of the Bayesian analyzes into
+## This script converts the hundreds of files of the Bayesian analyses into
 ## one compact file (per method of calculation of the transformed values of the
 ## cofactors) summarizing the information.
 
 for (k in c("", 2)) {
-  lf <- list.files(paste0("data/analyzes-outputs/bayesian-outputs", k, "/"), pattern = "DIC")
-  lf_a <- list.files(paste0("data/analyzes-outputs/bayesian-outputs", k, "/"), pattern = "-a-")
+  lf <- list.files(paste0("data/analyses-outputs/bayesian-outputs", k, "/"), pattern = "DIC")
+  lf_a <- list.files(paste0("data/analyses-outputs/bayesian-outputs", k, "/"), pattern = "-a-")
   
   df <- data.frame(model = gsub("DIC-(.*)-.*", "\\1", lf),
                    dic = 0, a0 = 0, af = 0)
   
   for (i in 1:length(lf)) {
-    data <- read.table(paste0("data/analyzes-outputs/bayesian-outputs", k, "/", lf[i]))
-    data_a <- read.table(paste0("data/analyzes-outputs/bayesian-outputs", k, "/", lf_a[i]))
+    data <- read.table(paste0("data/analyses-outputs/bayesian-outputs", k, "/", lf[i]))
+    data_a <- read.table(paste0("data/analyses-outputs/bayesian-outputs", k, "/", lf_a[i]))
     df$dic[i] <- data$V1[1]
     df$a0[i] <- median(data_a$V1)
     df$af[i] <- median(data_a$V2)

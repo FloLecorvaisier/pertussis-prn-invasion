@@ -1,11 +1,9 @@
-## In this script, we run analyzes to check if the frequentist approach is
+## In this script, we run analyses to check if the frequentist approach is
 ## robust (for the GLMM).
 
 library(lme4)
-library(performance)
 
-## We obtain the parameters of the simulations from an outsider script 
-## (written) in Bash.
+## We obtain the parameters of the simulations from a Bash script.
 args = commandArgs(trailingOnly = TRUE)
 param = args[1]
 value = as.numeric(args[2])
@@ -28,9 +26,7 @@ robustness_glmm <- function(tm, a0, af, se, n, p0) {
       modelD <- try(glmer(cbind(success, failure) ~ as.numeric(0:tm) + cumsum(xf) + cumsum(xd) + (1|Z), family = "binomial"), silent = T)
     })
     if (class(modelC) != "try-error" & class(modelD) != "try-error") {
-      chat = check_overdispersion(modelD)$dispersion_ratio
-      # Chiobs = (deviance(modelC) - deviance(modelD))
-      Chiobs = anova(modelD)$`Sum Sq`[3]
+      Chiobs = anova(modelC, modelD, test = "Chisq")$`Chisq`[2]
       Chiseuil = qchisq(.95, 1)
       df = data.frame(Chiobs, Chiseuil, chat)
       return(df)
@@ -48,7 +44,7 @@ p0 = ifelse(param == "p0", value, .01)
 
 ## This part is useful to avoid reproducing simulations that have already been
 ## conducted.
-file <- paste0("data/analyzes-outputs/robustness-glmm/robust-glmm-", param, 
+file <- paste0("data/analyses-outputs/robustness-glmm/robust-glmm-", param, 
                "-a0", round(a0, 3), 
                "-af", round(af, 3),
                "-n", n,
@@ -71,7 +67,7 @@ if (!file.exists(file)) {
   }
   
   ## We save the file containing the simulations for one value of one parameter.
-  write.table(repli, file = paste0("data/analyzes-outputs/robustness-glmm/robust-glmm-", param, 
+  write.table(repli, file = paste0("data/analyses-outputs/robustness-glmm/robust-glmm-", param, 
                                    "-a0", round(a0, 3),
                                    "-af", round(af, 3),
                                    "-n", n,
